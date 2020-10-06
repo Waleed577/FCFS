@@ -1,98 +1,72 @@
-   ///*** FCFS implementation when Arrival Time of each process is same.***///
-#include<stdio.h>
-
- // prototype of function that print  all results.
-void printResult(int np, int burstTime[],int waitingTime[], int turnAroundTime[],
-                  int completionTime[],float avg_wt, float avg_tat);
-                 
-     // Main function
-int main()
-{
-	printf("\t\t\tFCFS when arrival time is same for every process.\n\n ");
-	
-	//taking total number of processes form on console.
-	int np;
-	printf("Enter number of processes to be used : ");
-	scanf("%d",&np);
-	
-	// taking burst time of each process.
-	printf("\n\tGive Burst time of each process :\n");
-	int i , burstTime[25];
-	for(i = 0; i < np; i++)
-	{
-	  printf("Burst time of process %d = ",i+1);
-        scanf("%d",&burstTime[i]);	
-	}
-	 
-	 // calculation of waiting time of each process.
-	int waitingTime[25];
-	 waitingTime [0] = 0; //1st process doesn't wait as there is no prev process.
-	 for(i = 1;i< np; i++)
-	{
-	    waitingTime[i] = burstTime[i-1]+ waitingTime[i-1];	
-	}
-	
-      // calculation of average waiting time;	
-	   int total_wt = 0;
-      for(i =0;i< np; i++)
-	  {
-	  	total_wt = total_wt + waitingTime[i];
-	  }
-	       
-	  float avg_wt = (float)total_wt / (float)np;
-
-	// calculation of turn around time of each process.
-	int turnAroundTime[25];
-	 
-	 for(i =0;i< np; i++)
-	{
-	    turnAroundTime[i] = burstTime[i]+ waitingTime[i];	
-	}
-	
-	// calculation of average Turn around time;	
-	   int total_tat = 0;
-      for(i =0;i < np; i++)
-	  {
-	  	total_tat = total_tat + turnAroundTime[i];
-	  }
-	       
-	  float avg_tat = (float)total_tat / (float)np;
-	
-	// calculation of Completion time of each process.
-    int completionTime[25], l = 0;
-       completionTime[0] = burstTime[0]; // as ct[prev] = 0 for 1st process
-    for(i = 1; i < np; i++)
-	{
-		l = l + completionTime[i-1];
-	   completionTime[i] = l  + burstTime[i];
-	   
-    }
+// C++ program for implementation of FCFS  
+// scheduling 
+#include<iostream> 
+using namespace std; 
   
-     // paramter passing to printResult and calling to print all above results.
-    printResult(np, burstTime, waitingTime, turnAroundTime,
-	             completionTime, avg_wt, avg_tat);
-	return 0;
-}
-
-// printResult function definition:
-void printResult(int np, int burstTime[],int waitingTime[],int turnAroundTime[],
-                  int completionTime[],float avg_wt, float avg_tat)
- {
- 	 
-	 
-	 // for output of all calculations
- 	printf("\nProcess No.\tBurst Time\tWaiting Time\tTurn Around Time\t"
-	        "Completion Time");
-	        
-   for(int i =1; i <=np; i++)
-   {
-   	printf("\n%d\t\t%d\t\t%d\t\t\t%d\t\t%d", i,burstTime[i-1],waitingTime[i-1],
-   	         turnAroundTime[i-1], completionTime[i-1]);
-   }
-   
-   // printing  Average waiting and Turn around time
-   printf("\n Average waiting time = %f", avg_wt);
-   printf("\n Average Turn Around Time = %f", avg_tat);
- 
- }
-
+// Function to find the waiting time for all  
+// processes 
+void findWaitingTime(int processes[], int n,  
+                          int bt[], int wt[]) 
+{ 
+    // waiting time for first process is 0 
+    wt[0] = 0; 
+  
+    // calculating waiting time 
+    for (int  i = 1; i < n ; i++ ) 
+        wt[i] =  bt[i-1] + wt[i-1] ; 
+} 
+  
+// Function to calculate turn around time 
+void findTurnAroundTime( int processes[], int n,  
+                  int bt[], int wt[], int tat[]) 
+{ 
+    // calculating turnaround time by adding 
+    // bt[i] + wt[i] 
+    for (int  i = 0; i < n ; i++) 
+        tat[i] = bt[i] + wt[i]; 
+} 
+  
+//Function to calculate average time 
+void findavgTime( int processes[], int n, int bt[]) 
+{ 
+    int wt[n], tat[n], total_wt = 0, total_tat = 0; 
+  
+    //Function to find waiting time of all processes 
+    findWaitingTime(processes, n, bt, wt); 
+  
+    //Function to find turn around time for all processes 
+    findTurnAroundTime(processes, n, bt, wt, tat); 
+  
+    //Display processes along with all details 
+    cout << "Processes  "<< " Burst time  "
+         << " Waiting time  " << " Turn around time\n"; 
+  
+    // Calculate total waiting time and total turn  
+    // around time 
+    for (int  i=0; i<n; i++) 
+    { 
+        total_wt = total_wt + wt[i]; 
+        total_tat = total_tat + tat[i]; 
+        cout << "   " << i+1 << "\t\t" << bt[i] <<"\t    "
+            << wt[i] <<"\t\t  " << tat[i] <<endl; 
+    } 
+  
+    cout << "Average waiting time = " 
+         << (float)total_wt / (float)n; 
+    cout << "\nAverage turn around time = " 
+         << (float)total_tat / (float)n; 
+} 
+  
+// Driver code 
+int main() 
+{ 
+    //process id's 
+    int processes[] = { 1, 2, 3}; 
+    int n = sizeof processes / sizeof processes[0]; 
+  
+    //Burst time of all processes 
+    int  burst_time[] = {10, 5, 8}; 
+  
+    findavgTime(processes, n,  burst_time); 
+    return 0; 
+} 
