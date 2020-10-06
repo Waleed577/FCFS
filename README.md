@@ -10,9 +10,9 @@ int main()
 {
 	printf("\t\t\tFCFS when arrival time is same for every process.\n\n ");
 	
-	//taking number of processes form user.
+	//taking total number of processes form on console.
 	int np;
-	printf("Enter number of processes you want : ");
+	printf("Enter number of processes to be used : ");
 	scanf("%d",&np);
 	
 	// taking burst time of each process.
