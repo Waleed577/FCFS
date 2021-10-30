@@ -59,7 +59,7 @@ void findavgTime( int processes[], int n, int bt[])
 // Driver code 
 int main() 
 { 
-    //process id's 
+    //process id's in form of array
     int processes[] = { 1, 2, 3, 4, 5}; 
     int n = sizeof processes / sizeof processes[0]; 
   
