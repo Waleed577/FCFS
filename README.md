@@ -1,5 +1,7 @@
 // C++ program for implementation of FCFS  
 // scheduling 
+
+#inlcude<conio.h>
 #include<iostream> 
 using namespace std; 
   
