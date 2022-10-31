@@ -5,6 +5,11 @@
 //automatically executes queued requests and processes in order of their arrival. 
 //This is managed with a FIFO queue.
 
+//As the process enters the ready queue, its PCB (Process Control Block) is 
+//linked with the tail of the queue and, when the CPU becomes free, it should be
+//assigned to the process at the beginning of the queue.
+
+
 #inlcude<conio.h>
 #include<iostream> 
 using namespace std; 
