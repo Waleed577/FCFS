@@ -8,7 +8,9 @@
 //As the process enters the ready queue, its PCB (Process Control Block) is 
 //linked with the tail of the queue and, when the CPU becomes free, it should be
 //assigned to the process at the beginning of the queue.
+Example of FCFS scheduling
 
+A real-life example of the FCFS method is buying a movie ticket on the ticket counter. In this scheduling algorithm, a person is served according to the queue manner. The person who arrives first in the queue first buys the ticket and then the next one. This will continue until the last person in the queue purchases the ticket. Using this algorithm, the CPU process works in a similar manner. 
 
 #inlcude<conio.h>
 #include<iostream> 
