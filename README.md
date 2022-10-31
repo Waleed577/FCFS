@@ -3,6 +3,7 @@
 
 //First Come First Serve (FCFS) is an operating system scheduling algorithm that 
 //automatically executes queued requests and processes in order of their arrival. 
+//This is managed with a FIFO queue.
 
 #inlcude<conio.h>
 #include<iostream> 
