@@ -1,6 +1,9 @@
 // C++ program for implementation of FCFS  
 // scheduling 
 
+//First Come First Serve (FCFS) is an operating system scheduling algorithm that 
+//automatically executes queued requests and processes in order of their arrival. 
+
 #inlcude<conio.h>
 #include<iostream> 
 using namespace std; 
